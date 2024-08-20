@@ -1,60 +1,87 @@
-*{
-  margin:0;
-  padding:0;
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
   border: none;
   outline: none;
   list-style: none;
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+/* Sidebar Styles */
 .sidebar {
-  color: #fff;
-  margin: 30px;
+  width: 200px;
+  transition: width 0.3s;
+  background-color: #333;
+  height: 100vh;
+  color: white;
+  padding-top: 10px;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
-/* App.css */
+.sidebar.collapsed {
+  width: 60px;
+}
 
-.app-container {
+.sidebar-toggle {
+  text-align: right;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+.sidebar ul li {
+  padding: 15px;
+  text-align: left;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
   display: flex;
-margin: 0px;
-padding: 0px;
+  align-items: center;
 }
 
 .main-content {
-  flex: 1;
+  margin-left: 200px;
   padding: 20px;
-  height: min-content;
+  transition: margin-left 0.3s;
 }
 
-.search {
-  margin-bottom: 20px;
+.sidebar.collapsed + .main-content {
+  margin-left: 60px;
 }
 
-/* Non-active menu item text color */
+/* Additional Menu Styling */
 .ant-menu-light .ant-menu-item,
 .ant-menu-light .ant-menu-submenu-title {
   color: #65558f;
 }
 
-/* Active menu item background color and text color */
 .ant-menu-light .ant-menu-item-selected {
   background-color: #65558f !important;
   color: white !important;
 }
 
-/* Menu item hover text color */
 .ant-menu-light .ant-menu-item:hover,
 .ant-menu-light .ant-menu-submenu-title:hover {
   color: #65558f;
 }
 
-/* Example: Adjusting icon sizes */
 .ant-menu-item .anticon {
-  font-size: 24px; /* Adjust size as needed */
-  color: #65558f; /* Default icon color */
+  font-size: 24px;
+  color: #65558f;
 }
 
-/* Example: Active icon color */
 .ant-menu-item-selected .anticon {
-  color: white; /* Active icon color */
+  color: white;
 }

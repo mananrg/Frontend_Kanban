@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SideBar from './components/SideBar';
-import SearchField from './components/SearchBar'; // Import the new SearchField component
+import Sidebar from './components/Sidebar';
+import SearchField from './components/SearchBar';
 import './App.css';
+import './index.css';
 
 const Home = () => <div>Home Page</div>;
 const Project1 = () => <div>Project 1 Page</div>;
@@ -16,7 +17,7 @@ function App() {
   return (
     <Router>
       <div className="app-container">
-        <SideBar />
+        <Sidebar />
         <div className="main-content">
           <div className="search">
             <SearchField />
