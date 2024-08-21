@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import menuIcon from '@iconify-icons/mdi/menu';
 import homeIcon from '@iconify-icons/mdi/home';
 import appsIcon from '@iconify-icons/mdi/apps';
 import calendarIcon from '@iconify-icons/mdi/calendar';
@@ -38,6 +39,10 @@ const SideBar = () => {
 
   return (
     <div className="sidebar">
+      <div className="sidebar-header">
+        <Icon icon={menuIcon} className="menu-icon" />
+        <span className="brand-text">Bear Brown</span>
+      </div>
       <Menu
         mode="inline"
         defaultSelectedKeys={['home']}
