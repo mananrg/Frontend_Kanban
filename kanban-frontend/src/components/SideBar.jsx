@@ -4,6 +4,7 @@ import homeIcon from '@iconify-icons/mdi/home';
 import appsIcon from '@iconify-icons/mdi/apps';
 import calendarIcon from '@iconify-icons/mdi/calendar';
 import messageIcon from '@iconify-icons/mdi/message';
+import chartBoxIcon from '@iconify-icons/mdi/chart-box';
 import peopleIcon from '@iconify-icons/mdi/people';
 import accountIcon from '@iconify-icons/mdi/account-circle';
 import { Menu, Button } from 'antd';
@@ -23,6 +24,7 @@ const items = [
   },
   { key: 'calendar', icon: <Icon icon={calendarIcon} />, label: 'Calendar' },
   { key: 'messages', icon: <Icon icon={messageIcon} />, label: 'Messages' },
+  { key: 'reports', icon: <Icon icon={chartBoxIcon} />, label: 'Reports' },
   { key: 'people', icon: <Icon icon={peopleIcon} />, label: 'People' },
   { key: 'account', icon: <Icon icon={accountIcon} />, label: 'Account' },
 ];
@@ -35,33 +37,30 @@ const SideBar = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: 256, height: '100vh', borderRight: 'thick'  }}>
-      <div style={{ 
-        padding: '16px', 
-        backgroundColor: '#ffffff', 
-        textAlign: 'center', 
-        fontSize: '14px', 
-        color: '#65558f',
-      }}>
-        Bear Brown and Company
-      </div>
+    <div className="sidebar">
       <Menu
-        style={{
-          flex: 1,
-          backgroundColor: '#ffffff',
-          padding: '20px',
-          textAlign:'start'
-        }}
+        mode="inline"
         defaultSelectedKeys={['home']}
         defaultOpenKeys={['projects']}
-        items={items}
         onClick={onClick}
-        theme="light"
-      />
-       <div style={{ padding: '16px'}}>
-          <Button type="primary" shape="round" icon={<QuestionCircleFilled />} iconPosition={'start'} size={'large'} style={{backgroundColor: '#d9d9d9', color:'#65558f', fontWeight: 'bold',}}>
-HELP          </Button>
-        </div>
+      >
+        {items.map(item => (
+          <Menu.Item key={item.key} icon={item.icon}>
+            <span className="menu-text">{item.label}</span>
+          </Menu.Item>
+        ))}
+      </Menu>
+      <div className="help-button">
+        <Button 
+          type="primary" 
+          shape="round" 
+          icon={<QuestionCircleFilled />} 
+          size='large' 
+          style={{ backgroundColor: '#d9d9d9', color: '#000', fontWeight: 'bold' }}
+        >
+          Help
+        </Button>
+      </div>
     </div>
   );
 };
