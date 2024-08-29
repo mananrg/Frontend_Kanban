@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 import menuIcon from "@iconify-icons/mdi/menu";
 import closeIcon from "@iconify-icons/mdi/close";
@@ -43,7 +43,7 @@ const SideBar = () => {
     <div
       className={`flex flex-col h-screen bg-black text-white ${
         isExpanded ? "w-64" : "w-20"
-      } transition-width duration-300 ease-in-out rounded-tr-3xl rounded-br-3xl`}
+      } transition-width duration-1 ease-in-out rounded-tr-3xl rounded-br-3xl`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
@@ -88,6 +88,7 @@ const SideBar = () => {
   );
 };
 
+// eslint-disable-next-line react/prop-types
 const MenuItem = ({ icon, label, isExpanded }) => (
   <div
     className={`flex items-center space-x-4 p-4 ${
