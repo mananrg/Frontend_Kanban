@@ -9,6 +9,7 @@ import ProjectManagerSearchField from "./pmComponents/SearchBar"; // Project Man
 import AdminSearchField from "./adminComponents/adminSearchBar"; // Admin SearchField
 import "./App.css";
 import "./index.css";
+import { useState } from "react"; // Import useState to manage sidebar state
 
 // Pages
 const Home = () => <div>Home Page</div>;
@@ -23,10 +24,13 @@ const AdminDashboard = () => <div>Admin Dashboard</div>;
 
 // Project Manager Layout
 function ProjectManagerLayout() {
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false); // State to manage sidebar expansion
+
   return (
-    <div className="content">
+    <div className={`content ${isSidebarExpanded ? "ml-64" : "ml-20"}`}>
+      {/* Adjust margin-left based on sidebar state */}
       <div className="main-content relative">
-        <div className="search">
+        <div className="search transition-all duration-300">
           <ProjectManagerSearchField />
         </div>
         <Routes>
@@ -40,17 +44,21 @@ function ProjectManagerLayout() {
           <Route path="/account" element={<Account />} />
         </Routes>
       </div>
-      <Sidebar />
+      <Sidebar onToggle={(expanded) => setIsSidebarExpanded(expanded)} />{" "}
+      {/* Pass state setter to Sidebar */}
     </div>
   );
 }
 
 // Admin Layout
 function AdminLayout() {
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false); // State to manage sidebar expansion
+
   return (
-    <div className="content">
+    <div className={`content ${isSidebarExpanded ? "ml-64" : "ml-20"}`}>
+      {/* Adjust margin-left based on sidebar state */}
       <div className="main-content relative">
-        <div className="search">
+        <div className="search transition-all duration-300">
           <AdminSearchField />
         </div>
         <Routes>
@@ -60,7 +68,8 @@ function AdminLayout() {
           <Route path="/admin/account" element={<Account />} />
         </Routes>
       </div>
-      <Sidebar />
+      <Sidebar onToggle={(expanded) => setIsSidebarExpanded(expanded)} />{" "}
+      {/* Pass state setter to Sidebar */}
     </div>
   );
 }
