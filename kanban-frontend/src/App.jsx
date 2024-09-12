@@ -11,6 +11,7 @@ import "./App.css";
 import "./index.css";
 import { useState, useEffect } from "react"; // Import useState and useEffect
 import KanbanBoard from "./adminComponents/kanbanBoard";
+import UserList from "./adminComponents/userList";
 
 // Pages
 const Home = () => {
@@ -71,6 +72,7 @@ function AdminLayout() {
           <Route path="reports" element={<Reports />} />
           <Route path="people" element={<People />} />
           <Route path="account" element={<Account />} />
+          <Route path="kanban" element={<KanbanBoard />} />
         </Routes>
       </div>
       <Sidebar onToggle={(expanded) => setIsSidebarExpanded(expanded)} />
@@ -87,7 +89,7 @@ function App() {
           <Route path="/pm/*" element={<ProjectManagerLayout />} />
           <Route path="/admin/*" element={<AdminLayout />} />
           {/* <Route path="/" element={<Navigate to="/pm/home" />} /> */}
-<Route path= "/" element={<KanbanBoard />}     />     
+<Route path= "/" element={<UserList />}     />     
         </Routes>
       </div>
     </Router>

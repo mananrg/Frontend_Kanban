@@ -1,0 +1,31 @@
+* {
+  background-color: azure;
+}
+
+/* Style for h1 */
+h1 {
+  font-size: 2em; /* Ensure h1 has a visible size */
+  margin-bottom: 20px; /* Add space between h1 and table */
+  text-align: start; /* Optional, aligns the title */
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 10px;
+  text-align: left;
+  color: black;
+  size: 250px;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.size-180 {
+  width: 180px; /* The proper property is 'width', not 'size' */
+}
