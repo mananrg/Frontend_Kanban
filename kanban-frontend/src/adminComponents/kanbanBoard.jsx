@@ -1,6 +1,6 @@
 import { Calendar, Users, Plus } from 'lucide-react';
 import { useState } from 'react';
-import "./kanban.css";
+// import "./kanban.css";
 import CreateTask from './createTask';
 
 const initialData = {

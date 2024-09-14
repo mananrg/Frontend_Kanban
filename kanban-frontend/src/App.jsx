@@ -88,8 +88,8 @@ function App() {
         <Routes>
           <Route path="/pm/*" element={<ProjectManagerLayout />} />
           <Route path="/admin/*" element={<AdminLayout />} />
-          {/* <Route path="/" element={<Navigate to="/pm/home" />} /> */}
-<Route path= "/" element={<UserList />}     />     
+          <Route path="/" element={<Navigate to="/pm/home" />} />
+{/* <Route path= "/" element={<UserList />}     />      */}
         </Routes>
       </div>
     </Router>
