@@ -2,17 +2,17 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import searchIcon from "@iconify-icons/mdi/magnify";
 import menuIcon from "@iconify-icons/mdi/menu";
-import CreateProject from "./createProject"; // Import the CreateProject component
+import CreateProject from "./createProject"; 
 
 const AdminSearchBar = () => {
   const [showCreateProject, setShowCreateProject] = useState(false);
 
   const handleAddProject = () => {
-    setShowCreateProject(true); // Open the modal when "Add New Project" is clicked
+    setShowCreateProject(true);
   };
 
   const handleCloseCreateProject = () => {
-    setShowCreateProject(false); // Close the modal
+    setShowCreateProject(false);
   };
 
   return (
@@ -47,7 +47,7 @@ const AdminSearchBar = () => {
         </div>
       </div>
 
-      {/* Tasks, Slack, and Reminder in a Single Row */}
+      {/* Main Section - Tasks, Slack, and Reminder */}
       <div className="grid grid-cols-3 gap-6 mb-8">
         {/* Tasks Section */}
         <div className="flex flex-col space-y-4">
@@ -79,27 +79,6 @@ const AdminSearchBar = () => {
                 <span className="text-yellow-400">Medium Priority</span>
               </div>
               <p className="text-sm mt-4">Due date: 20 JUN</p>
-              <div className="flex mt-4">
-                <Icon
-                  icon={menuIcon}
-                  className="text-white"
-                  width="24"
-                  height="24"
-                />
-                <Icon
-                  icon={menuIcon}
-                  className="text-white ml-2"
-                  width="24"
-                  height="24"
-                />
-                <Icon
-                  icon={menuIcon}
-                  className="text-white ml-2"
-                  width="24"
-                  height="24"
-                />
-                <span className="ml-2 text-white">+2</span>
-              </div>
             </div>
           </div>
         </div>
@@ -121,7 +100,7 @@ const AdminSearchBar = () => {
         <div className="grid grid-cols-4 gap-6">
           <div className="flex flex-col bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-4 shadow-md">
             <img
-              src="image-path-1.jpg"
+              src="https://via.placeholder.com/150"
               alt="Modern"
               className="rounded-lg mb-4"
             />
@@ -131,9 +110,10 @@ const AdminSearchBar = () => {
               View All
             </button>
           </div>
+
           <div className="flex flex-col bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-4 shadow-md">
             <img
-              src="image-path-2.jpg"
+              src="https://via.placeholder.com/150"
               alt="Kanban Board"
               className="rounded-lg mb-4"
             />
@@ -143,9 +123,10 @@ const AdminSearchBar = () => {
               View All
             </button>
           </div>
+
           <div className="flex flex-col bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-4 shadow-md">
             <img
-              src="image-path-3.jpg"
+              src="https://via.placeholder.com/150"
               alt="OPT Board"
               className="rounded-lg mb-4"
             />
@@ -155,6 +136,7 @@ const AdminSearchBar = () => {
               View All
             </button>
           </div>
+
           <div className="flex flex-col bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-4 shadow-md">
             <div className="flex justify-center items-center h-full">
               <button
@@ -199,9 +181,7 @@ const AdminSearchBar = () => {
       </div>
 
       {/* Show CreateProject modal */}
-      {showCreateProject && (
-        <CreateProject onClose={handleCloseCreateProject} />
-      )}
+      {showCreateProject && <CreateProject onClose={handleCloseCreateProject} />}
     </div>
   );
 };
