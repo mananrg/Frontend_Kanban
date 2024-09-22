@@ -4,58 +4,16 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Sidebar from "./pmComponents/SideBar"; // Common Sidebar component
-import ProjectManagerSearchField from "./pmComponents/SearchBar"; // Project Manager SearchField
-import AdminSearchField from "./adminComponents/adminSearchBar"; // Admin SearchField
+import AdminSideBar from "./adminComponents/adminSidebar"; // Admin Sidebar component
+import AdminSearchField from "./adminComponents/adminSearchBar"; // Admin SearchField (acts as Home)
+import AdminProjects from "./adminComponents/adminProjects"; // Admin Projects component
+import AdminCalendar from "./adminComponents/adminCalendar";
+import AdminReports from "./adminComponents/adminReports";
+import AdminMessages from "./adminComponents/adminMessages";
+import UserList from "./adminComponents/userList";
 import "./App.css";
 import "./index.css";
-import { useState, useEffect } from "react"; // Import useState and useEffect
-import KanbanBoard from "./adminComponents/kanbanBoard";
-import UserList from "./adminComponents/userList";
-
-// Pages
-const Home = () => {
-  useEffect(() => {
-    console.log("Home");
-  }, []);
-
-  return <div>Home Page</div>;
-};
-
-const Project1 = () => <div>Project 1 Page</div>;
-const Project2 = () => <div>Project 2 Page</div>;
-const Calendar = () => <div>Calendar Page</div>;
-const Messages = () => <div>Messages Page</div>;
-const Reports = () => <div>Reports Page</div>;
-const People = () => <div>People Page</div>;
-const Account = () => <div>Account Page</div>;
-const AdminDashboard = () => <div>Admin Dashboard</div>;
-
-// Project Manager Layout
-function ProjectManagerLayout() {
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
-
-  return (
-    <div className={`content ${isSidebarExpanded ? "ml-64" : "ml-20"}`}>
-      <div className="main-content relative">
-        <div className="search transition-all duration-300">
-          <ProjectManagerSearchField />
-        </div>
-        <Routes>
-          <Route path="home" element={<Home />} />
-          <Route path="projects/project1" element={<Project1 />} />
-          <Route path="projects/project2" element={<Project2 />} />
-          <Route path="calendar" element={<Calendar />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="reports" element={<Reports />} />
-          <Route path="people" element={<People />} />
-          <Route path="account" element={<Account />} />
-        </Routes>
-      </div>
-      <Sidebar onToggle={(expanded) => setIsSidebarExpanded(expanded)} />
-    </div>
-  );
-}
+import { useState } from "react"; // Import useState
 
 // Admin Layout
 function AdminLayout() {
@@ -65,17 +23,19 @@ function AdminLayout() {
     <div className={`content ${isSidebarExpanded ? "ml-64" : "ml-20"}`}>
       <div className="main-content relative">
         <div className="search transition-all duration-300">
-          <AdminSearchField />
+          <Routes>
+            <Route path="home" element={<AdminSearchField />} />
+            <Route path="projects" element={<AdminProjects />} />
+            <Route path="calendar" element={<AdminCalendar />} />
+            <Route path="messages" element={<AdminMessages />} />
+            <Route path="reports" element={<AdminReports />} />
+            <Route path="people" element={<UserList />} />
+            <Route path="account" element={<div>Account Page</div>} />
+            <Route path="dashboard" element={<div>Admin Dashboard</div>} />
+          </Routes>
         </div>
-        <Routes>
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="reports" element={<Reports />} />
-          <Route path="people" element={<People />} />
-          <Route path="account" element={<Account />} />
-          <Route path="kanban" element={<KanbanBoard />} />
-        </Routes>
       </div>
-      <Sidebar onToggle={(expanded) => setIsSidebarExpanded(expanded)} />
+      <AdminSideBar onToggle={(expanded) => setIsSidebarExpanded(expanded)} />
     </div>
   );
 }
@@ -86,10 +46,8 @@ function App() {
       <div id="root">
         <div className="background"></div>
         <Routes>
-          <Route path="/pm/*" element={<ProjectManagerLayout />} />
           <Route path="/admin/*" element={<AdminLayout />} />
-          <Route path="/" element={<Navigate to="/pm/home" />} />
-{/* <Route path= "/" element={<UserList />}     />      */}
+          <Route path="/" element={<Navigate to="/admin/home" />} />
         </Routes>
       </div>
     </Router>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import searchIcon from "@iconify-icons/mdi/magnify";
 import menuIcon from "@iconify-icons/mdi/menu";
-import CreateProject from "./createProject"; 
+import CreateProject from "./createProject";
 
 const AdminSearchBar = () => {
   const [showCreateProject, setShowCreateProject] = useState(false);
@@ -16,7 +16,10 @@ const AdminSearchBar = () => {
   };
 
   return (
-    <div className="p-6 bg-transparent min-h-screen">
+    <div
+      className="p-6 bg-transparent h-screen overflow-y-scroll pb-6"
+      style={{ scrollBehavior: "smooth" }} // Added smooth scroll behavior here
+    >
       {/* Header Section */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -151,7 +154,7 @@ const AdminSearchBar = () => {
       </div>
 
       {/* Recent Projects Section */}
-      <div>
+      <div className="overflow-y-auto max-h-96 mb-6">
         <h2 className="text-2xl font-semibold text-white mb-4">
           Recent Projects
         </h2>
@@ -181,7 +184,12 @@ const AdminSearchBar = () => {
       </div>
 
       {/* Show CreateProject modal */}
-      {showCreateProject && <CreateProject onClose={handleCloseCreateProject} />}
+      {showCreateProject && (
+        <CreateProject onClose={handleCloseCreateProject} />
+      )}
+
+      {/* Empty Footer */}
+      <footer className="h-16">{/* Empty footer, space provided */}</footer>
     </div>
   );
 };

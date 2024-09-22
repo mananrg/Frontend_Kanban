@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 // import "./UserList.css"; // Optional for custom styles
 import linkedinIcon from "@iconify-icons/mdi/linkedin";
@@ -49,7 +49,9 @@ const UserList = () => {
       </div>
 
       {/* Scrollable container */}
-      <div style={{ maxHeight: '80vh', overflowY: 'auto', margin: '20px 40px' }}>
+      <div
+        style={{ maxHeight: "80vh", overflowY: "auto", margin: "20px 40px" }}
+      >
         <table>
           <tbody>
             {users.map((user) => (
@@ -95,7 +97,7 @@ const UserList = () => {
                         width: "40px",
                         justifyContent: "center",
                         textAlign: "center",
-                        cursor: "pointer"
+                        cursor: "pointer",
                       }}
                     />
                     <h3>Delete</h3>
