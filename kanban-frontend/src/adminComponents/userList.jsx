@@ -31,8 +31,27 @@ const UserList = () => {
       });
   };
 
+  // Automatic scrolling effect
+  useEffect(() => {
+    const container = document.querySelector(".scrollable-list");
+
+    const scrollStep = () => {
+      if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
+        container.scrollTop = 0; 
+      } else {
+        container.scrollTop += 1; 
+      }
+    };
+
+    // Let me try controlling the scroll speed 
+    const intervalId = setInterval(scrollStep, 50); 
+
+    return () => clearInterval(intervalId); 
+  }, []);
+
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
+    <div className="p-8 bg-gray-100 min-h-screen rounded-lg">
+      
       {/* Header Section */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-semibold text-gray-800">People</h1>
@@ -41,18 +60,9 @@ const UserList = () => {
         </button>
       </div>
 
-      {/* Scrollable container */}
-      <div className="overflow-y-auto max-h-[80vh] shadow-lg bg-white rounded-lg p-6">
+      
+      <div className="scrollable-list overflow-y-auto max-h-[80vh] shadow-lg bg-white rounded-lg p-6 custom-scrollbar">
         <table className="min-w-full table-auto text-left">
-          <thead>
-            <tr className="bg-gray-200 text-gray-600 uppercase text-sm">
-              <th className="py-3 px-6">Profile</th>
-              <th className="py-3 px-6">Name</th>
-              <th className="py-3 px-6">LinkedIn</th>
-              <th className="py-3 px-6">Actions</th>
-              <th className="py-3 px-6">Role</th>
-            </tr>
-          </thead>
           <tbody>
             {users.map((user) => (
               <tr

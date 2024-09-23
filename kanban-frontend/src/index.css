@@ -141,3 +141,16 @@
   display: flex;
   justify-content: center;
 }
+
+
+/* For Chrome, Safari, and Opera */
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+
+/* For Internet Explorer and Edge */
+/* For Firefox */
+.custom-scrollbar {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
