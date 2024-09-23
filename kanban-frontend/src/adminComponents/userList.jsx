@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import "./UserList.css"; // Optional for custom styles
 import linkedinIcon from "@iconify-icons/mdi/linkedin";
 import deleteIcon from "@iconify-icons/mdi/delete";
-
 import { Icon } from "@iconify/react";
 
 const UserList = () => {
@@ -34,76 +32,69 @@ const UserList = () => {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          height: "50px",
-          margin: "40px",
-        }}
-      >
-        <h1>User List</h1>
-        <button>Invite members</button>
+    <div className="p-8 bg-gray-100 min-h-screen">
+      {/* Header Section */}
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-semibold text-gray-800">People</h1>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+          Invite Members
+        </button>
       </div>
 
       {/* Scrollable container */}
-      <div
-        style={{ maxHeight: "80vh", overflowY: "auto", margin: "20px 40px" }}
-      >
-        <table>
+      <div className="overflow-y-auto max-h-[80vh] shadow-lg bg-white rounded-lg p-6">
+        <table className="min-w-full table-auto text-left">
+          <thead>
+            <tr className="bg-gray-200 text-gray-600 uppercase text-sm">
+              <th className="py-3 px-6">Profile</th>
+              <th className="py-3 px-6">Name</th>
+              <th className="py-3 px-6">LinkedIn</th>
+              <th className="py-3 px-6">Actions</th>
+              <th className="py-3 px-6">Role</th>
+            </tr>
+          </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.id}>
-                <td>
+              <tr
+                key={user.id}
+                className="border-b border-gray-200 hover:bg-gray-100"
+              >
+                <td className="py-3 px-6">
                   <img
                     src={user.avatar}
                     alt={user.name}
-                    style={{
-                      width: "40px",
-                      borderRadius: "50%",
-                      marginRight: "10px",
-                    }}
+                    className="w-10 h-10 rounded-full"
                   />
                 </td>
-                <td>{user.name}</td>
-                <td>
+                <td className="py-3 px-6 text-gray-800 font-medium">
+                  {user.name}
+                </td>
+                <td className="py-3 px-6 text-center">
                   <a
                     href={user.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="size-180px"
-                    style={{
-                      display: "inline-block",
-                      width: "180px",
-                      textAlign: "center",
-                    }}
+                    className="inline-block"
                   >
                     <Icon
                       icon={linkedinIcon}
-                      style={{ color: "blue", height: "40px", width: "40px" }}
+                      className="text-blue-600 hover:scale-110 transition-transform"
+                      style={{ height: "24px", width: "24px" }}
                     />
                   </a>
                 </td>
-                <td>
-                  <div style={{ display: "flex" }}>
+                <td className="py-3 px-6">
+                  <div className="flex items-center space-x-2">
                     <Icon
                       icon={deleteIcon}
                       onClick={() => handleDelete(user.id)}
-                      style={{
-                        color: "red",
-                        height: "40px",
-                        width: "40px",
-                        justifyContent: "center",
-                        textAlign: "center",
-                        cursor: "pointer",
-                      }}
+                      className="text-red-600 cursor-pointer hover:text-red-800 transition-colors"
+                      style={{ height: "24px", width: "24px" }}
                     />
-                    <h3>Delete</h3>
+                    <span className="text-gray-700 font-semibold">Delete</span>
                   </div>
                 </td>
-                <td>{user.role}</td>
+                <td className="py-3 px-6 text-gray-600">{user.role}</td>
               </tr>
             ))}
           </tbody>
