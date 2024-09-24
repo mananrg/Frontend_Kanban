@@ -6,17 +6,18 @@ import "react-big-calendar/lib/css/react-big-calendar.css"; // Import react-big-
 const localizer = momentLocalizer(moment);
 
 const AdminCalendar = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState([
     {
-      title: "Board Meeting",
-      start: new Date(),
-      end: new Date(moment().add(1, "hours").toDate()),
+      title: "Meeting with the Backend team",
+      start: new Date(2024, 7, 12, 7, 0), // August 12, 7:00 AM
+      end: new Date(2024, 7, 12, 8, 0),
       allDay: false,
     },
     {
-      title: "Team Standup",
-      start: new Date(moment().add(1, "days").toDate()),
-      end: new Date(moment().add(1, "days").add(1, "hours").toDate()),
+      title: "Chat with Nik Brown",
+      start: new Date(2024, 7, 13, 7, 0), // August 13, 7:00 AM
+      end: new Date(2024, 7, 13, 8, 0),
       allDay: false,
     },
   ]);
@@ -38,32 +39,100 @@ const AdminCalendar = () => {
     }
   };
 
+  const months = moment.months();
+  const years = [2023, 2024, 2025];
+
+  const handleMonthChange = (e) => {
+    const newMonth = e.target.value;
+    const updatedDate = moment(currentDate).month(newMonth).toDate();
+    setCurrentDate(updatedDate);
+  };
+
+  const handleYearChange = (e) => {
+    const newYear = e.target.value;
+    const updatedDate = moment(currentDate).year(newYear).toDate();
+    setCurrentDate(updatedDate);
+  };
+
   return (
-    <div className="admin-calendar bg-gray-900 text-white p-6 min-h-screen">
-      <h1 className="text-3xl text-center mb-6">Admin Calendar</h1>
-      <div className="bg-gray-800 rounded-lg shadow-lg p-4">
+    <div className="admin-calendar rounded-lg bg-gray-1000 text-white p-6 min-h-screen">
+      {/* Header Section */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-semibold">Calendar</h1>
+        <div className="flex space-x-4 ">
+          <select
+            value={moment(currentDate).month()}
+            onChange={handleMonthChange}
+            className="bg-gray-800 text-white px-3 py-2 rounded-lg"
+          >
+            {months.map((month, index) => (
+              <option key={index} value={index}>
+                {month}
+              </option>
+            ))}
+          </select>
+          <select
+            value={moment(currentDate).year()}
+            onChange={handleYearChange}
+            className="bg-gray-800 text-white px-3 py-2 rounded-lg"
+          >
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+          <button className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+            Calendly
+          </button>
+          <button className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+            Create Event
+          </button>
+        </div>
+      </div>
+
+      {/* Calendar Section */}
+      <div className="bg-gray-1000 rounded-lg shadow-lg p-4">
         <Calendar
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
           selectable
-          style={{ height: 500 }}
+          style={{ height: 600, backgroundColor: "#1C1D1E", color: "white" }} 
+          date={currentDate}
+          onNavigate={(date) => setCurrentDate(date)}
           onSelectEvent={handleSelectEvent}
           onSelectSlot={handleSelectSlot}
           eventPropGetter={() => ({
             style: {
-              backgroundColor: "gray",
-              color: "white",
-              borderRadius: "0.5rem",
-              padding: "0.5rem",
+              
+              backgroundColor: "#AEB7D0", 
+              color: "Black", 
+              borderRadius: "0.95rem", 
+              padding: "0.25rem 0.5rem",
+              border: "1px solid #6b7280" 
+              
             },
           })}
-          // Override default styles using Tailwind CSS
           components={{
             toolbar: ({ label }) => (
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-center bg-gray-1000 mb-4 text-white">
                 <span className="text-lg font-semibold">{label}</span>
+              </div>
+            ),
+            event: ({ event }) => (
+              <div className="bg-gray-1000 text-sm font-medium">{event.title}</div>
+            ),
+            dayHeader: ({ label }) => (
+              <div className="bg-gray-1000 text-sm text-center py-2">
+                {/* Date Styling to match Figma */}
+                <span className="font-semibold">{label}</span>
+              </div>
+            ),
+            timeGutter: ({ label }) => (
+              <div className="bg-gray-1000 text-xs text-right pr-2">
+                {label}
               </div>
             ),
           }}
