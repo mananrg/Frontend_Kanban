@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import menuIcon from "@iconify-icons/mdi/menu";
 import closeIcon from "@iconify-icons/mdi/close";
 import homeIcon from "@iconify-icons/mdi/home";
@@ -11,9 +12,10 @@ import peopleIcon from "@iconify-icons/mdi/people";
 import accountIcon from "@iconify-icons/mdi/account-circle";
 import questionIcon from "@iconify-icons/mdi/help-circle";
 
-const SideBar = () => {
+const PMSideBar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
 
   const handleMouseEnter = () => {
     if (!isClicked) {
@@ -29,21 +31,23 @@ const SideBar = () => {
 
   const handleClick = () => {
     if (isExpanded && isClicked) {
-      // Close the sidebar if it's expanded and was previously clicked to stay open
       setIsExpanded(false);
       setIsClicked(false);
     } else {
-      // Expand the sidebar and set it to stay open
       setIsExpanded(true);
       setIsClicked(true);
     }
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path); // Perform navigation
   };
 
   return (
     <div
       className={`flex flex-col h-screen bg-black text-white ${
         isExpanded ? "w-64" : "w-20"
-      } transition-width duration-1 ease-in-out rounded-tr-3xl rounded-br-3xl`}
+      } transition-width duration-300 ease-in-out rounded-tr-3xl rounded-br-3xl`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
@@ -63,17 +67,48 @@ const SideBar = () => {
       </div>
 
       <div className="flex flex-col mt-10 space-y-4">
-        <MenuItem icon={homeIcon} label="Home" isExpanded={isExpanded} />
-        <MenuItem icon={appsIcon} label="Projects" isExpanded={isExpanded} />
+        <MenuItem
+          icon={homeIcon}
+          label="Home"
+          isExpanded={isExpanded}
+          onClick={() => handleNavigation("/pm/home")}
+        />
+        <MenuItem
+          icon={appsIcon}
+          label="Projects"
+          isExpanded={isExpanded}
+          onClick={() => handleNavigation("/pm/projects")}
+        />
         <MenuItem
           icon={calendarIcon}
           label="Calendar"
           isExpanded={isExpanded}
+          onClick={() => handleNavigation("/pm/calendar")}
         />
-        <MenuItem icon={messageIcon} label="Messages" isExpanded={isExpanded} />
-        <MenuItem icon={peopleIcon} label="People" isExpanded={isExpanded} />
-        <MenuItem icon={chartBoxIcon} label="Reports" isExpanded={isExpanded} />
-        <MenuItem icon={accountIcon} label="Account" isExpanded={isExpanded} />
+        <MenuItem
+          icon={messageIcon}
+          label="Messages"
+          isExpanded={isExpanded}
+          onClick={() => handleNavigation("/pm/messages")}
+        />
+        <MenuItem
+          icon={peopleIcon}
+          label="People"
+          isExpanded={isExpanded}
+          onClick={() => handleNavigation("/pm/people")}
+        />
+        <MenuItem
+          icon={chartBoxIcon}
+          label="Reports"
+          isExpanded={isExpanded}
+          onClick={() => handleNavigation("/pm/reports")}
+        />
+        <MenuItem
+          icon={accountIcon}
+          label="Account"
+          isExpanded={isExpanded}
+          onClick={() => handleNavigation("/pm/account")}
+        />
       </div>
 
       <div className="mt-auto mb-6">
@@ -89,15 +124,16 @@ const SideBar = () => {
 };
 
 // eslint-disable-next-line react/prop-types
-const MenuItem = ({ icon, label, isExpanded }) => (
+const MenuItem = ({ icon, label, isExpanded, onClick }) => (
   <div
-    className={`flex items-center space-x-4 p-4 ${
+    className={`flex items-center space-x-4 p-4 cursor-pointer ${
       isExpanded ? "justify-start" : "justify-center"
     }`}
+    onClick={onClick} // Handle click event
   >
     <Icon icon={icon} width="24" height="24" />
     {isExpanded && <span>{label}</span>}
   </div>
 );
 
-export default SideBar;
+export default PMSideBar;
