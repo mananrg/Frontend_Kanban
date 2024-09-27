@@ -13,7 +13,7 @@ const AdminProjects = () => {
   };
 
   return (
-    <div className="p-6 pb-10 bg-gray-900  text-white min-h-screen">
+    <div className="p-6 pb-10 bg-[#1C1D1E] text-white min-h-screen">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-6">
         <div>
@@ -54,17 +54,17 @@ const AdminProjects = () => {
       {/* Kanban Board Section */}
       <div className="grid grid-cols-4 gap-4">
         {/* TODO Column */}
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <h2 className="font-semibold mb-2">TODO</h2>
-          <p className="text-gray-400 mb-2">2 Tasks</p>
+        <div className="bg-[#2B2C2D] p-4 rounded-lg">
+          <h2 className="text-xl font-semibold mb-2">TODO</h2>
+          <p className="text-sm text-gray-400 mb-4">2 Tasks</p>
 
           {/* Card 1 */}
-          <div className="bg-gray-700 p-4 mb-4 rounded-lg">
-            <h3 className="font-semibold mb-2">UX Adjustments</h3>
+          <div className="bg-[#1F2022] p-4 mb-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">UX Adjustments</h3>
             <p className="text-sm text-gray-300 mb-2">
               It just needs to adapt the UI from what you did before.
             </p>
-            <p className="text-xs text-blue-400 mb-2">Research</p>
+            <span className="text-xs text-blue-400 block mb-2">Research</span>
             <div className="flex justify-between items-center text-gray-400 text-xs">
               <span>3 comments</span>
               <span>Yesterday</span>
@@ -72,26 +72,28 @@ const AdminProjects = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-gray-700 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Moodboards</h3>
+          <div className="bg-[#1F2022] p-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">Moodboards</h3>
             <p className="text-sm text-gray-300 mb-2">Creating UI Designs.</p>
-            <p className="text-xs text-blue-400 mb-2">UI Design</p>
+            <span className="text-xs text-blue-400">UI Design</span>
           </div>
         </div>
 
         {/* In Work Column */}
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <h2 className="font-semibold mb-2">In Work</h2>
-          <p className="text-gray-400 mb-2">3 Tasks</p>
+        <div className="bg-[#2B2C2D] p-4 rounded-lg">
+          <h2 className="text-xl font-semibold mb-2">In Work</h2>
+          <p className="text-sm text-gray-400 mb-4">3 Tasks</p>
 
           {/* Card 1 */}
-          <div className="bg-gray-700 p-4 mb-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Slack Integration</h3>
+          <div className="bg-[#1F2022] p-4 mb-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">Slack Integration</h3>
             <p className="text-sm text-gray-300 mb-2">
               Add a field in the portal to let the user connect their Slack
               account.
             </p>
-            <p className="text-xs text-blue-400 mb-2">Development</p>
+            <span className="text-xs text-blue-400 block mb-2">
+              Development
+            </span>
             <div className="flex justify-between items-center text-gray-400 text-xs">
               <span>5 comments</span>
               <span>Tomorrow</span>
@@ -99,12 +101,12 @@ const AdminProjects = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-gray-700 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Copywriting of the App</h3>
+          <div className="bg-[#1F2022] p-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">Copywriting of the App</h3>
             <p className="text-sm text-gray-300 mb-2">
               Composing words to provide people with decision-making clarity.
             </p>
-            <p className="text-xs text-blue-400 mb-2">UX Writing</p>
+            <span className="text-xs text-blue-400 block mb-2">UX Writing</span>
             <div className="flex justify-between items-center text-gray-400 text-xs">
               <span>2 comments</span>
               <span>Nov 30</span>
@@ -113,66 +115,64 @@ const AdminProjects = () => {
         </div>
 
         {/* QA Column */}
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <h2 className="font-semibold mb-2">QA</h2>
-          <p className="text-gray-400 mb-2">2 Tasks</p>
+        <div className="bg-[#2B2C2D] p-4 rounded-lg">
+          <h2 className="text-xl font-semibold mb-2">QA</h2>
+          <p className="text-sm text-gray-400 mb-4">2 Tasks</p>
 
           {/* Card 1 */}
-          <div className="bg-gray-700 p-4 mb-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Dashboard Design</h3>
+          <div className="bg-[#1F2022] p-4 mb-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">Dashboard Design</h3>
             <img
               src="https://via.placeholder.com/100"
               alt="Design Preview"
               className="rounded-lg mb-2"
             />
-            <p className="text-xs text-blue-400 mb-2">UI Design</p>
+            <span className="text-xs text-blue-400">UI Design</span>
           </div>
 
           {/* Card 2 */}
-          <div className="bg-gray-700 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Design System</h3>
+          <div className="bg-[#1F2022] p-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">Design System</h3>
             <p className="text-sm text-gray-300 mb-2">
               Create a consistent look and feel for both web and mobile.
             </p>
-            <p className="text-xs text-blue-400 mb-2">Development</p>
+            <span className="text-xs text-blue-400">Development</span>
           </div>
         </div>
 
         {/* Completed Column */}
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <h2 className="font-semibold mb-2">Completed</h2>
-          <p className="text-gray-400 mb-2">3 Tasks</p>
+        <div className="bg-[#2B2C2D] p-4 rounded-lg">
+          <h2 className="text-xl font-semibold mb-2">Completed</h2>
+          <p className="text-sm text-gray-400 mb-4">3 Tasks</p>
 
           {/* Card 1 */}
-          <div className="bg-gray-700 p-4 mb-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Presentation</h3>
+          <div className="bg-[#1F2022] p-4 mb-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">Presentation</h3>
             <p className="text-sm text-gray-300 mb-2">
               Help businesses clearly define their annual strategy.
             </p>
-            <p className="text-xs text-blue-400 mb-2">Planning</p>
+            <span className="text-xs text-blue-400">Planning</span>
             <div className="flex justify-between items-center text-gray-400 text-xs">
               <span>11 comments</span>
-              <span>✔️ Done</span>
+              <span className="text-green-500">✔️ Done</span>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="bg-gray-700 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Brainstorming</h3>
-            <p className="text-sm text-gray-300 mb-2">
-              Completed group session.
-            </p>
-            <p className="text-xs text-blue-400 mb-2">Research</p>
+          <div className="bg-[#1F2022] p-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold mb-2">Brainstorming</h3>
+            <p className="text-sm text-gray-300 mb-2">Completed group session.</p>
+            <span className="text-xs text-blue-400">Research</span>
             <div className="flex justify-between items-center text-gray-400 text-xs">
               <span>21 comments</span>
-              <span>✔️ Done</span>
+              <span className="text-green-500">✔️ Done</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Footer Section */}
-      <div className="flex justify-between mt-6">
+      <div className="flex justify-between mt-6 space-x-2">
         <button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md">
           Schedule Meeting
         </button>
