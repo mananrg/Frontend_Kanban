@@ -13,7 +13,7 @@ const AdminProjects = () => {
   };
 
   return (
-    <div className="bg-[#1C1D1E] text-white min-h-screen h-screen overflow-y-auto flex flex-col">
+    <div className="bg-[#1C1D1E] text-white min-h-screen h-screen overflow-y-auto flex flex-col scrollbar-hide">
       {/* Header Section */}
       <div className="flex justify-between items-center p-6">
         <div>
@@ -127,7 +127,7 @@ const AdminProjects = () => {
         </div>
       </div>
 
-      {/* Buttons Section at Bottom Right */}
+      {/* Buttons Section */}
       <div className="flex justify-end space-x-4 p-6">
         <button className="bg-blue-500 px-6 py-2 rounded-lg shadow-md">Schedule Meeting</button>
         <button className="bg-blue-500 px-6 py-2 rounded-lg shadow-md">View Team Members</button>
