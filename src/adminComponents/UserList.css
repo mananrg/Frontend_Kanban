@@ -1,0 +1,112 @@
+* {
+  background-color: azure;
+}
+
+/* Style for h1 */
+h1 {
+  font-size: 2em; /* Ensure h1 has a visible size */
+  margin-bottom: 20px; /* Add space between h1 and table */
+  text-align: start; /* Optional, aligns the title */
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 10px;
+  text-align: left;
+  color: black;
+  size: 250px;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.size-180 {
+  width: 180px; /* The proper property is 'width', not 'size' */
+}
+
+
+/*modifiying modal here br*/
+
+/* Create Project Modal Styling */
+
+.create-project-modal {
+  background-color: #f5f8fa; /* Updated background color */
+  border-radius: 12px; /* Rounded corners */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Fields Styling */
+.create-project-modal input, 
+.create-project-modal textarea, 
+.create-project-modal select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  font-size: 16px;
+  color: #333;
+}
+
+.create-project-modal input::placeholder, 
+.create-project-modal textarea::placeholder {
+  color: #bbb;
+}
+
+/* Button Styling */
+.create-project-modal .btn-cancel {
+  background-color: #d3d3d3;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.create-project-modal .btn-create {
+  background-color: #000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Priority Dropdown Styling */
+.create-project-modal select {
+  appearance: none;
+  background-color: white;
+  padding-right: 30px; /* Space for custom dropdown arrow */
+}
+
+/* Custom dropdown arrow */
+.create-project-modal select::after {
+  content: "▼";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #333;
+}
+
+/* Team Section */
+.create-project-modal .team-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.create-project-modal .team-section img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
