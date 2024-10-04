@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css"; // Import react-big-calendar CSS
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import { PopupWidget } from "react-calendly"; // Import Calendly popup widget
+import AdminCreateEvent from "./adminCreateEvent"; // Import the AdminCreateEvent component
 
 const localizer = momentLocalizer(moment);
 
@@ -22,6 +24,17 @@ const AdminCalendar = () => {
     },
   ]);
 
+  const [showCreateEvent, setShowCreateEvent] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
+
+  const handleCreateEvent = (newEvent) => {
+    setEvents([...events, newEvent]);
+  };
+
+  const handleOpenCalendly = () => {
+    setShowCalendly(true);
+  };
+
   const handleSelectEvent = (event) => {
     alert(`Event: ${event.title}`);
   };
@@ -39,54 +52,23 @@ const AdminCalendar = () => {
     }
   };
 
-  const months = moment.months();
-  const years = [2023, 2024, 2025];
-
-  const handleMonthChange = (e) => {
-    const newMonth = e.target.value;
-    const updatedDate = moment(currentDate).month(newMonth).toDate();
-    setCurrentDate(updatedDate);
-  };
-
-  const handleYearChange = (e) => {
-    const newYear = e.target.value;
-    const updatedDate = moment(currentDate).year(newYear).toDate();
-    setCurrentDate(updatedDate);
-  };
-
   return (
     <div className="admin-calendar rounded-lg bg-gray-1000 text-white p-6 min-h-screen">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-semibold">Calendar</h1>
-        <div className="flex space-x-4 ">
-          <select
-            value={moment(currentDate).month()}
-            onChange={handleMonthChange}
-            className="bg-gray-800 text-white px-3 py-2 rounded-lg"
+        <div className="flex space-x-4">
+          <button
+            className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            onClick={() => setShowCreateEvent(true)}
           >
-            {months.map((month, index) => (
-              <option key={index} value={index}>
-                {month}
-              </option>
-            ))}
-          </select>
-          <select
-            value={moment(currentDate).year()}
-            onChange={handleYearChange}
-            className="bg-gray-800 text-white px-3 py-2 rounded-lg"
-          >
-            {years.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-          <button className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-            Calendly
-          </button>
-          <button className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
             Create Event
+          </button>
+          <button
+            className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            onClick={handleOpenCalendly}
+          >
+            Open Calendly
           </button>
         </div>
       </div>
@@ -99,20 +81,18 @@ const AdminCalendar = () => {
           startAccessor="start"
           endAccessor="end"
           selectable
-          style={{ height: 600, backgroundColor: "#1C1D1E", color: "white" }} 
+          style={{ height: 600, backgroundColor: "#1C1D1E", color: "white" }}
           date={currentDate}
           onNavigate={(date) => setCurrentDate(date)}
           onSelectEvent={handleSelectEvent}
           onSelectSlot={handleSelectSlot}
           eventPropGetter={() => ({
             style: {
-              
-              backgroundColor: "#AEB7D0", 
-              color: "Black", 
-              borderRadius: "0.95rem", 
+              backgroundColor: "#AEB7D0",
+              color: "Black",
+              borderRadius: "0.95rem",
               padding: "0.25rem 0.5rem",
-              border: "1px solid #6b7280" 
-              
+              border: "1px solid #6b7280",
             },
           })}
           components={{
@@ -122,11 +102,12 @@ const AdminCalendar = () => {
               </div>
             ),
             event: ({ event }) => (
-              <div className="bg-gray-1000 text-sm font-medium">{event.title}</div>
+              <div className="bg-gray-1000 text-sm font-medium">
+                {event.title}
+              </div>
             ),
             dayHeader: ({ label }) => (
               <div className="bg-gray-1000 text-sm text-center py-2">
-                {/* Date Styling to match Figma */}
                 <span className="font-semibold">{label}</span>
               </div>
             ),
@@ -138,6 +119,26 @@ const AdminCalendar = () => {
           }}
         />
       </div>
+
+      {/* Show CreateEvent Modal */}
+      {showCreateEvent && (
+        <AdminCreateEvent
+          onClose={() => setShowCreateEvent(false)}
+          onSave={handleCreateEvent}
+        />
+      )}
+
+      {/* Show Calendly Popup Widget */}
+      {showCalendly && (
+        <PopupWidget
+          url="https://calendly.com/your-calendly-link"
+          rootElement={document.getElementById("root")}
+          text="Schedule time with me"
+          textColor="#ffffff"
+          color="#00a2ff"
+          onClose={() => setShowCalendly(false)} // Close Calendly popup on complete
+        />
+      )}
     </div>
   );
 };
