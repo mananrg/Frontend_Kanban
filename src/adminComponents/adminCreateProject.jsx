@@ -81,6 +81,8 @@ const CreateProject = ({ onClose }) => {
     const result = await response.json();
     console.log('Project created successfully:', result);
     alert("Project created!");
+    window.location.reload();
+
     onClose();
   } catch (error) {
     console.error('Error creating project:', error);
