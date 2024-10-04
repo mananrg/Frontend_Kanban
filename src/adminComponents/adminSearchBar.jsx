@@ -1,43 +1,34 @@
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import searchIcon from "@iconify-icons/mdi/magnify";
-import menuIcon from "@iconify-icons/mdi/menu";
 import CreateProject from "./adminCreateProject";
 import ProjectCard from "./adminProjectCard";
 
 const AdminSearchBar = () => {
   const [showCreateProject, setShowCreateProject] = useState(false);
-  const [projects, setProjects] = useState([]); // Initialize as an empty array
+  const [projects, setProjects] = useState([]);
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZlZmUyOTA5MTkwMDI1YjIwYTM3ZjkiLCJmaXJzdF9uYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImVtYWlsIjoiam9obmRvZUBleGFtcGxlLmNvbSIsInJvbGUiOiJQcm9qZWN0IE1hbmFnZXIiLCJpYXQiOjE3MjgwMDE4NTQsImV4cCI6MTcyODA4ODI1NH0.HXbJT_deEUFRp9u_ySufSakLombbnUzz4bgvNkPeolw"; // Replace with your actual token
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZlZmUyOTA5MTkwMDI1YjIwYTM3ZjkiLCJmaXJzdF9uYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImVtYWlsIjoiam9obmRvZUBleGFtcGxlLmNvbSIsInJvbGUiOiJQcm9qZWN0IE1hbmFnZXIiLCJpYXQiOjE3MjgwMDE4NTQsImV4cCI6MTcyODA4ODI1NH0.HXbJT_deEUFRp9u_ySufSakLombbnUzz4bgvNkPeolw";
 
-  // Function to fetch projects from API
   const fetchProjects = async () => {
-  try {
-    const response = await fetch("http://18.119.120.232:3000/api/projects", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    try {
+      const response = await fetch("http://18.191.65.40:3000/api/projects", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    // Log response status
-    console.log("Response status:", response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
-    // Check if the response is not OK
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      const data = await response.json();
+      setProjects(data);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
     }
+  };
 
-    const data = await response.json();
-
-    // Ensure it's an array even if API returns undefined
-    setProjects(data); // Directly set the API response to projects state
-  } catch (error) {
-    console.error("Error fetching projects:", error);
-  }
-};
-
-  // useEffect to fetch projects when component mounts
   useEffect(() => {
     fetchProjects();
   }, []);
@@ -75,36 +66,36 @@ const AdminSearchBar = () => {
               height="24"
             />
           </div>
-          <p className="text-white font-medium">First Name</p>
-          <Icon
-            icon={menuIcon}
-            className="text-white cursor-pointer"
-            width="30"
-            height="30"
-          />
+          <p className="text-white font-medium">Admin</p>
+
+          {/* Replaced menuIcon with a profile picture */}
+          <div className="w-10 h-10 rounded-full bg-gray-300 overflow-hidden border-2 border-white">
+            <img
+              src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&q=80&w=200"
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
 
       {/* Project Cards Section */}
       <div className="grid grid-cols-4 gap-6 mb-8">
-        {/* Dynamically render project cards */}
         {projects.length > 0 ? (
-          projects.map((project, index) => {
-            // Log the project object to check its structure
-            console.log("Project object:", project);
-
-            return (
-              <ProjectCard
-                key={project._id || index} // Use project._id as key
-                imageUrl={project.imageUrl || "https://images.unsplash.com/photo-1580983561371-7f4b242d8ec0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
-                title={project.name} // Use project.name for the title
-                description={project.description} // Use project.description
-                avatars={project.assigned_users.map(
-                  (user) => `${user.first_name} ${user.last_name}`
-                )} // If you have assigned users, map them into avatars, or handle it accordingly
-              />
-            );
-          })
+          projects.map((project, index) => (
+            <ProjectCard
+              key={project._id || index}
+              imageUrl={
+                project.imageUrl ||
+                "https://images.unsplash.com/photo-1580983561371-7f4b242d8ec0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              }
+              title={project.name}
+              description={project.description}
+              avatars={project.assigned_users.map(
+                (user) => `${user.first_name} ${user.last_name}`
+              )}
+            />
+          ))
         ) : (
           <p className="text-white">No projects available</p>
         )}
@@ -124,26 +115,24 @@ const AdminSearchBar = () => {
 
       {/* Recent Projects Section */}
       <div className="overflow-y-auto max-h-96 scrollbar-hide mb-6">
-        <h2 className="text-2xl font-semibold text-white mb-4">
-          Recent Projects
-        </h2>
+        <h2 className="text-2xl font-semibold text-white mb-4">Recent Tasks</h2>
         <div className="space-y-4">
           <div className="grid grid-cols-5 gap-6 bg-[#2B2C2D] rounded-lg p-4 shadow-md">
-            <span className="text-lg text-white font-bold">KANBAN BOARD</span>
+            <span className="text-lg text-white font-bold">Project Alpha</span>
             <span className="text-sm text-gray-400">25 May, 2020</span>
             <span className="text-sm text-gray-400">Rahul</span>
             <span className="text-sm text-gray-400">10 July, 2020</span>
             <span className="text-sm text-gray-400">In Process</span>
           </div>
           <div className="grid grid-cols-5 gap-6 bg-[#2B2C2D] rounded-lg p-4 shadow-md">
-            <span className="text-lg text-white font-bold">Target</span>
+            <span className="text-lg text-white font-bold">Project Kanban</span>
             <span className="text-sm text-gray-400">12 May, 2020</span>
             <span className="text-sm text-gray-400">Leo Resim</span>
             <span className="text-sm text-gray-400">28 June, 2020</span>
             <span className="text-sm text-gray-400">Completed</span>
           </div>
           <div className="grid grid-cols-5 gap-6 bg-[#2B2C2D] rounded-lg p-4 shadow-md">
-            <span className="text-lg text-white font-bold">RE/MAX</span>
+            <span className="text-lg text-white font-bold">OPT Portal</span>
             <span className="text-sm text-gray-400">21 April, 2020</span>
             <span className="text-sm text-gray-400">Tamim Iqbal</span>
             <span className="text-sm text-gray-400">11 June, 2020</span>

@@ -33,6 +33,7 @@ function AdminLayout() {
           <Routes>
             <Route path="home" element={<AdminSearchField />} />
             <Route path="projects" element={<AdminProjects />} />
+            <Route path="home/projects" element={<AdminProjects />} />
             <Route path="calendar" element={<AdminCalendar />} />
             <Route path="messages" element={<AdminMessages />} />
             <Route path="reports" element={<AdminReports />} />

@@ -1,6 +1,14 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 
 const ProjectCard = ({ imageUrl, title, description, avatars }) => {
+  const navigate = useNavigate(); // Initialize the navigation hook
+
+  // Handler for View button click
+  const handleViewClick = () => {
+    navigate("projects"); // Navigate to the adminProjects page
+  };
+
   return (
     <div className="flex flex-col bg-[#2B2C2D] rounded-xl p-6 shadow-lg">
       {/* Project Image */}
@@ -25,8 +33,11 @@ const ProjectCard = ({ imageUrl, title, description, avatars }) => {
       </div>
 
       {/* View All Button */}
-      <button className="px-4 py-2 bg-transparent text-[#4CD7D0] border border-[#4CD7D0] rounded-full hover:bg-[#4CD7D0] hover:text-black transition duration-300 ease-in-out">
-        View All
+      <button
+        onClick={handleViewClick} // Add onClick handler for navigation
+        className="px-4 py-2 bg-transparent text-[#4CD7D0] border border-[#4CD7D0] rounded-full hover:bg-[#4CD7D0] hover:text-black transition duration-300 ease-in-out"
+      >
+        View
       </button>
     </div>
   );
