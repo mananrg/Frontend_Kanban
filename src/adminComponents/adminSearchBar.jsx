@@ -7,12 +7,10 @@ import ProjectCard from "./adminProjectCard";
 const AdminSearchBar = () => {
   const [showCreateProject, setShowCreateProject] = useState(false);
   const [projects, setProjects] = useState([]);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZlZmUyOTA5MTkwMDI1YjIwYTM3ZjkiLCJmaXJzdF9uYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImVtYWlsIjoiam9obmRvZUBleGFtcGxlLmNvbSIsInJvbGUiOiJQcm9qZWN0IE1hbmFnZXIiLCJpYXQiOjE3MjgwMDE4NTQsImV4cCI6MTcyODA4ODI1NH0.HXbJT_deEUFRp9u_ySufSakLombbnUzz4bgvNkPeolw";
-
+  const token = import.meta.env.VITE_JWT_TOKEN
   const fetchProjects = async () => {
     try {
-      const response = await fetch("http://18.191.65.40:3000/api/projects", {
+      const response = await fetch(import.meta.env.VITE_API_URL_PROJECTS, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

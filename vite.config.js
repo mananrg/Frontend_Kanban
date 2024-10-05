@@ -1,11 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    // This ensures that the app falls back to index.html for unknown routes
     historyApiFallback: true,
+    host: '0.0.0.0', // Allow access from other devices
+    port: 5173, // Set the port e
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html', // Path to your main HTML file
+      },
+    },
   },
 })

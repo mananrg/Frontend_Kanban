@@ -20,9 +20,7 @@ const CreateProject = ({ onClose }) => {
   const [emailInput, setEmailInput] = useState("");
   const [selectedRole, setSelectedRole] = useState("Can Edit");
   const [members, setMembers] = useState([]);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZlZmUyOTA5MTkwMDI1YjIwYTM3ZjkiLCJmaXJzdF9uYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImVtYWlsIjoiam9obmRvZUBleGFtcGxlLmNvbSIsInJvbGUiOiJQcm9qZWN0IE1hbmFnZXIiLCJpYXQiOjE3MjgwMDE4NTQsImV4cCI6MTcyODA4ODI1NH0.HXbJT_deEUFRp9u_ySufSakLombbnUzz4bgvNkPeolw"; // Replace with your actual token
-
+  const token = import.meta.env.VITE_JWT_TOKEN
   // Mapping roles to icons
   const roleIcons = {
     "Can View": <FaEye className="text-blue-500" />,
@@ -53,14 +51,12 @@ const CreateProject = ({ onClose }) => {
 
     console.log("Sending Email with parameters:", templateParams); // Log the parameters
 
-    emailjs
-      .send(
-        "service_mlbjdkr",
-        "template_n4ilima",
-        templateParams,
-        "mO9nL1o9Nwlv9aY6S"
-      )
-      .then((response) => {
+    emailjs.send(
+  import.meta.env.VITE_SERVICE_ID,
+  import.meta.env.VITE_TEMPLATE_ID,
+  templateParams,
+  import.meta.env.VITE_PRIVATE_KEY
+).then((response) => {
         console.log("Email sent successfully:", response);
         alert("Invitation sent!");
       })
@@ -86,7 +82,7 @@ const CreateProject = ({ onClose }) => {
     console.log("Sending project data:", projectData); // Log the data being sent
 
     try {
-      const response = await fetch("http://18.191.65.40:3000/api/projects", {
+      const response = await fetch(import.meta.env.VITE_API_URL_PROJECTS, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
