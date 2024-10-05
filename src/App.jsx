@@ -21,7 +21,7 @@ import Login from "./login"; // Import the Login component
 import "./App.css";
 import "./index.css";
 import { useState } from "react"; // Import useState
-
+import PageNotFound from "./pageNotFound";
 // Admin Layout
 function AdminLayout() {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
@@ -83,6 +83,8 @@ function App() {
             <Route path="/admin/*" element={<AdminLayout />} />
             <Route path="/pm/*" element={<PMLayout />} />
             <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="*" element={<PageNotFound />} />
+
           </Routes>
         </div>
       </Router>
