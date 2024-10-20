@@ -97,12 +97,12 @@ const PMSideBar = () => {
           isExpanded={isExpanded}
           onClick={() => handleNavigation("/pm/people")}
         />
-        <MenuItem
+        {/* <MenuItem
           icon={chartBoxIcon}
           label="Reports"
           isExpanded={isExpanded}
           onClick={() => handleNavigation("/pm/reports")}
-        />
+        /> */}
         <MenuItem
           icon={accountIcon}
           label="Account"

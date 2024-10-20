@@ -2,16 +2,13 @@ import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
-const AdminAccount = () => {
+const VolunteerAccount = () => {
   const [user, setUser] = useState({
-    Name: "Jerry Wilson",
-    username: "Jerry",
-    number: "+1 123-456-7890",
-    email: "jerrywilson@gmail.com",
-    dob: "24 March 1999",
-    location: "Boston, MA, USA",
-    title: "Front end Developer, Volunteer",
-    linkedin: "LinkedIn Link",
+    username: "Jenny Wilson",
+    email: "jenny@gmail.com",
+    address: "New York, USA",
+    nickname: "Sky Angel",
+    dob: "April 28, 1981",
   });
 
   const [editField, setEditField] = useState(null);
@@ -83,16 +80,18 @@ const AdminAccount = () => {
 
   // Logout Function
   const handleLogout = () => {
+    // Clear session data if needed
+    // Redirect to the login page
     navigate("/login");
   };
 
   return (
-<div className="max-w-3xl mx-auto bg-white p-6 shadow-lg rounded-lg mb-10">
+    <div className="max-w-3xl mx-auto bg-gray-50 p-8 shadow-lg rounded-lg">
       {/* Return to OPT Portal Button */}
-      <div className="flex justify-end mb-6">
+      <div className="flex justify-center mb-6">
         <button
           onClick={() => (window.location.href = "/opt-portal")}
-          className="bg-gray-300 text-black font-semibold px-6 py-2 rounded-lg hover:bg-gray-400 transition-all duration-200"
+          className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition-all duration-200 text-lg"
         >
           Return to OPT Portal
         </button>
@@ -104,47 +103,39 @@ const AdminAccount = () => {
           alt="Profile"
           className="w-32 h-32 rounded-full mb-4 shadow-md border-2 border-gray-300"
         />
-        <button className="mt-2 px-3 py-1 bg-gray-100 border border-gray-300 text-sm text-gray-600 hover:bg-gray-200 rounded-md">
-          Upload Photo
-        </button>
         <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
           User Profile
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 items-start">
-        {/* Render fields */}
+      <div className="space-y-6">
         {Object.keys(user).map((field) => (
-          <div key={field} className="flex justify-between items-start">
+          <div key={field} className="flex justify-between items-center">
             <label className="block text-sm font-medium text-gray-700 capitalize">
-              {field === "fullName" ? "Full Name" : field.replace(/([A-Z])/g, ' $1')}:
+              {field}:
             </label>
-            <div className="flex items-center w-full ">
-              {editField === field ? (
-                <input
-                  type="text"
-                  value={tempValue}
-                  onChange={handleInputChange}
-                  onBlur={() => handleBlur(field)}
-                  onKeyPress={(e) => handleKeyPress(e, field)}
-                  autoFocus
-                  className="border-2 pl-5 focus:border-blue-500 w-full  transition-all duration-200"
-                />
-              ) : (
-                <span className="w-full text-gray-700 flex justify-end">{user[field]}</span>
-              )}
-              <button
-                onClick={() => handleEditClick(field)}
-                className="text-blue-500 hover:text-blue-700 ml-2 "
-              >
-                <FaEdit />
-              </button>
-            </div>
+            {editField === field ? (
+              <input
+                type="text"
+                value={tempValue}
+                onChange={handleInputChange}
+                onBlur={() => handleBlur(field)}
+                onKeyPress={(e) => handleKeyPress(e, field)}
+                autoFocus
+                className="w-2/3 border-b-2 border-gray-300 focus:border-blue-500 outline-none p-2 transition-all duration-200"
+              />
+            ) : (
+              <span className="w-2/3 text-gray-700">{user[field]}</span>
+            )}
+            <button
+              onClick={() => handleEditClick(field)}
+              className="text-blue-500 hover:text-blue-700"
+            >
+              <FaEdit />
+            </button>
           </div>
         ))}
       </div>
-
-
 
       {/* Change Password Section */}
       <div className="mt-8">
@@ -163,7 +154,7 @@ const AdminAccount = () => {
             onClick={() => setEditPassword(!editPassword)}
             className="text-blue-500 hover:text-blue-700 ml-4"
           >
-            Change password
+            <FaEdit />
           </button>
         </div>
 
@@ -185,7 +176,7 @@ const AdminAccount = () => {
                 <p className="text-red-500 text-sm mt-2">{passwordError}</p>
               )}
             </div>
-            <div className="flex items-center border ">
+            <div className="flex items-center">
               <button
                 type="submit"
                 className="bg-blue-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-blue-600 transition-all duration-200"
@@ -203,14 +194,8 @@ const AdminAccount = () => {
         )}
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex justify-between mt-8">
-        <button
-          onClick={() => console.log("Save changes clicked")}
-          className="bg-green-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-green-600 transition-all duration-200"
-        >
-          Save Changes
-        </button>
+      {/* Logout Button */}
+      <div className="flex justify-end mt-10">
         <button
           onClick={handleLogout}
           className="bg-red-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-red-600 transition-all duration-200"
@@ -222,4 +207,4 @@ const AdminAccount = () => {
   );
 };
 
-export default AdminAccount;
+export default VolunteerAccount;

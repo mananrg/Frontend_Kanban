@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import searchIcon from "@iconify-icons/mdi/magnify";
 import menuIcon from "@iconify-icons/mdi/menu";
-import CreateProject from "./adminCreateProject";
-import ProjectCard from "./adminProjectCard";
+import ProjectCard from "./volunteerProjectCard";
 
-const AdminSearchBar = () => {
-  const [showCreateProject, setShowCreateProject] = useState(false);
+const VolunteerSearchBar = () => {
+//   const [showCreateProject, setShowCreateProject] = useState(false);
   const [projects, setProjects] = useState([]); // Initialize as an empty array
   const token = import.meta.env.VITE_JWT_TOKEN
+   // Function to fetch projects from API
   const fetchProjects = async () => {
   try {
     const response = await fetch(import.meta.env.VITE_API_URL_PROJECTS, {
@@ -19,13 +19,10 @@ const AdminSearchBar = () => {
 
     // Log response status
     console.log("Response status:", response.status);
-console.log("URL: ",import.meta.VITE_API_URL_PROJECTS);
-console.log("Token: ",import.meta.VITE_JWT_TOKEN)
 
     // Check if the response is not OK
     if (!response.ok) {
-      const errorText = await response.text(); // Read response as text
-      throw new Error(`HTTP error! Status: ${response.status}, Response: ${errorText}`);
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
@@ -42,13 +39,13 @@ console.log("Token: ",import.meta.VITE_JWT_TOKEN)
     fetchProjects();
   }, []);
 
-  const handleAddProject = () => {
-    setShowCreateProject(true);
-  };
+//   const handleAddProject = () => {
+//     setShowCreateProject(true);
+//   };
 
-  const handleCloseCreateProject = () => {
-    setShowCreateProject(false);
-  };
+//   const handleCloseCreateProject = () => {
+//     setShowCreateProject(false);
+//   };
 
   return (
     <div
@@ -58,7 +55,7 @@ console.log("Token: ",import.meta.VITE_JWT_TOKEN)
       {/* Header Section */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-semibold text-white">Welcome, Admin!</h1>
+          <h1 className="text-3xl font-semibold text-white">Welcome, Volunteer!</h1>
           <p className="text-lg text-gray-400">Here is your agenda for today</p>
         </div>
         <div className="flex items-center space-x-4">
@@ -110,7 +107,7 @@ console.log("Token: ",import.meta.VITE_JWT_TOKEN)
         )}
 
         {/* Add New Project Card */}
-        <div className="flex flex-col bg-[#2B2C2D] rounded-lg p-6 shadow-lg border border-[#A1E3D8]">
+        {/* <div className="flex flex-col bg-[#2B2C2D] rounded-lg p-6 shadow-lg border border-[#A1E3D8]">
           <div className="flex justify-center items-center h-full">
             <button
               onClick={handleAddProject}
@@ -119,7 +116,7 @@ console.log("Token: ",import.meta.VITE_JWT_TOKEN)
               + Add New Project
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Recent Projects Section */}
@@ -152,10 +149,10 @@ console.log("Token: ",import.meta.VITE_JWT_TOKEN)
         </div>
       </div>
 
-      {/* Show CreateProject modal */}
+      {/* Show CreateProject modal
       {showCreateProject && (
         <CreateProject onClose={handleCloseCreateProject} />
-      )}
+      )} */}
 
       {/* Empty Footer */}
       <footer className="h-16"></footer>
@@ -163,4 +160,4 @@ console.log("Token: ",import.meta.VITE_JWT_TOKEN)
   );
 };
 
-export default AdminSearchBar;
+export default VolunteerSearchBar;

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import PMNewTask from "./pmNewTask";
+import VolunteerNewTask from "./volunteerNewTask";
 
-const PMProject = () => {
+const VolunteerProject = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleNewTask = () => {
@@ -188,9 +188,9 @@ const PMProject = () => {
       </div>
 
       {/* Modal */}
-      {isModalOpen && <PMNewTask onClose={handleCloseModal} />}
+      {isModalOpen && <VolunteerNewTask onClose={handleCloseModal} />}
     </div>
   );
 };
 
-export default PMProject;
+export default VolunteerProject;

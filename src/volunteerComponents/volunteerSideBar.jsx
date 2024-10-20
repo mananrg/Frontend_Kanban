@@ -7,11 +7,12 @@ import homeIcon from "@iconify-icons/mdi/home";
 import appsIcon from "@iconify-icons/mdi/apps";
 import calendarIcon from "@iconify-icons/mdi/calendar";
 import messageIcon from "@iconify-icons/mdi/message";
-import peopleIcon from "@iconify-icons/mdi/people";
+// import chartBoxIcon from "@iconify-icons/mdi/chart-box";
+// import peopleIcon from "@iconify-icons/mdi/people";
 import accountIcon from "@iconify-icons/mdi/account-circle";
 import questionIcon from "@iconify-icons/mdi/help-circle";
 
-const AdminSideBar = () => {
+const VolunteerSideBar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate for navigation
@@ -70,43 +71,43 @@ const AdminSideBar = () => {
           icon={homeIcon}
           label="Home"
           isExpanded={isExpanded}
-          onClick={() => handleNavigation("/admin/home")}
+          onClick={() => handleNavigation("/volunteer/home")}
         />
         <MenuItem
           icon={appsIcon}
           label="Projects"
           isExpanded={isExpanded}
-          onClick={() => handleNavigation("/admin/projects")}
+          onClick={() => handleNavigation("/volunteer/projects")}
         />
         <MenuItem
           icon={calendarIcon}
           label="Calendar"
           isExpanded={isExpanded}
-          onClick={() => handleNavigation("/admin/calendar")}
+          onClick={() => handleNavigation("/volunteer/calendar")}
         />
         <MenuItem
           icon={messageIcon}
           label="Messages"
           isExpanded={isExpanded}
-          onClick={() => handleNavigation("/admin/messages")}
+          onClick={() => handleNavigation("/volunteer/messages")}
         />
-        <MenuItem
+        {/* <MenuItem
           icon={peopleIcon}
           label="People"
           isExpanded={isExpanded}
-          onClick={() => handleNavigation("/admin/people")}
-        />
+          onClick={() => handleNavigation("/volunteer/people")}
+        /> */}
         {/* <MenuItem
           icon={chartBoxIcon}
           label="Reports"
           isExpanded={isExpanded}
-          onClick={() => handleNavigation("/admin/reports")}
+          onClick={() => handleNavigation("/volunteer/reports")}
         /> */}
         <MenuItem
           icon={accountIcon}
           label="Account"
           isExpanded={isExpanded}
-          onClick={() => handleNavigation("/admin/account")}
+          onClick={() => handleNavigation("/volunteer/account")}
         />
       </div>
 
@@ -135,4 +136,4 @@ const MenuItem = ({ icon, label, isExpanded, onClick }) => (
   </div>
 );
 
-export default AdminSideBar;
+export default VolunteerSideBar;

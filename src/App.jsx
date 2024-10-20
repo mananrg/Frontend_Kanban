@@ -21,7 +21,14 @@ import Login from "./login"; // Import the Login component
 import "./App.css";
 import "./index.css";
 import { useState } from "react"; // Import useState
-import PageNotFound from "./pageNotFound";
+import VolunteerSearchBar from "./volunteerComponents/volunteerSearchBar";
+import VolunteerCalendar from "./volunteerComponents/volunteerCalendar";
+import VolunteerMessages from "./volunteerComponents/volunteerMessages";
+import VolunteerProject from "./volunteerComponents/volunteerProject";
+import VolunteeReports from "./volunteerComponents/volunteerReports";
+import VolunteerSideBar from "./volunteerComponents/volunteerSideBar";
+import VolunteerAccount from "./volunteerComponents/volunteerAccount";
+
 // Admin Layout
 function AdminLayout() {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
@@ -33,7 +40,6 @@ function AdminLayout() {
           <Routes>
             <Route path="home" element={<AdminSearchField />} />
             <Route path="projects" element={<AdminProjects />} />
-            <Route path="home/projects" element={<AdminProjects />} />
             <Route path="calendar" element={<AdminCalendar />} />
             <Route path="messages" element={<AdminMessages />} />
             <Route path="reports" element={<AdminReports />} />
@@ -72,6 +78,30 @@ function PMLayout() {
   );
 }
 
+// Volunteer Layout
+function VolunteerLayout() {
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
+
+  return (
+    <div className={`content ${isSidebarExpanded ? "ml-64" : "ml-20"}`}>
+      <div className="main-content relative">
+        <div className="search transition-all duration-300">
+          <Routes>
+            <Route path="home" element={<VolunteerSearchBar />} />
+            <Route path="projects" element={<VolunteerProject />} />
+            <Route path="calendar" element={<VolunteerCalendar />} />
+            <Route path="messages" element={<VolunteerMessages />} />
+            <Route path="reports" element={<VolunteeReports />} />
+                        <Route path="account" element={<VolunteerAccount />} />
+
+          </Routes>
+        </div>
+      </div>
+      <VolunteerSideBar onToggle={(expanded) => setIsSidebarExpanded(expanded)} />
+    </div>
+  );
+}
+
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
@@ -82,9 +112,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/admin/*" element={<AdminLayout />} />
             <Route path="/pm/*" element={<PMLayout />} />
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="*" element={<PageNotFound />} />
+            <Route path="/volunteer/*" element={<VolunteerLayout />} />
 
+            <Route path="/" element={<Navigate to="/login" />} />
           </Routes>
         </div>
       </Router>
